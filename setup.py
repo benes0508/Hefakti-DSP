@@ -40,6 +40,10 @@ include_dirs = [
     "src-audacity/scorealign/fft3",
     "src-audacity/vamp",
     "src-audacity/vamp/vamp-sdk",
+    "src-audacity/au3-utility",
+    "src-audacity/au3-fft",
+    "src-audacity/au3-file-formats",
+    "src-audacity/pffft",
 ]
 
 # SoundTouch BPM detection
@@ -66,6 +70,8 @@ mir_ext = Extension(
         "src-audacity/mir/MirUtils.cpp",
         "src-audacity/mir/StftFrameProvider.cpp",
         "src-audacity/mir/DecimatingMirAudioReader.cpp",
+        "src-audacity/au3-fft/PowerSpectrumGetter.cpp",
+        "src-audacity/pffft/pffft.cpp",
     ],
     include_dirs=include_dirs,
     language="c++",
@@ -82,6 +88,8 @@ vamp_ext = Extension(
         "src-audacity/vamp/PercussionOnsetDetector.cpp",
         "src-audacity/vamp/PowerSpectrum.cpp",
         "src-audacity/vamp/FixedTempoEstimator.cpp",
+        "src-audacity/vamp/vamp-sdk/RealTime.cpp",
+        "src-audacity/vamp/vamp-sdk/FFT.cpp",
     ],
     include_dirs=include_dirs,
     language="c++",
@@ -120,7 +128,7 @@ setup(
     package_dir={"": "src"},
     ext_modules=[
         soundtouch_ext,
-        # mir_ext,  # Requires au3-* Audacity headers
+        mir_ext,
         vamp_ext,
         # scorealign_ext,  # Requires allegro, sautils
         effects_ext,

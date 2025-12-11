@@ -48,7 +48,7 @@ GetProjectSyncInfo(const ProjectSyncInfoInput& in)
 {
     if (in.tags.has_value() && in.tags->isOneShot) {
         // That's a one-shot file, we don't want to sync it.
-        return {}
+        return {};
     }
 
     std::optional<double> bpm;
@@ -70,7 +70,7 @@ GetProjectSyncInfo(const ProjectSyncInfoInput& in)
         timeSignature = meter->timeSignature;
         usedMethod = TempoObtainedFrom::Signal;
     } else {
-        return {}
+        return {};
     }
 
     const auto qpm = *bpm * quarternotesPerBeat[static_cast<int>(
@@ -134,13 +134,13 @@ std::optional<MusicalMeter> GetMusicalMeterFromSignal(
     QuantizationFitDebugOutput* debugOutput)
 {
     if (audio.GetSampleRate() <= 0) {
-        return {}
+        return {};
     }
     const auto duration = 1. * audio.GetNumSamples() / audio.GetSampleRate();
     if (duration > 60) {
         // A file longer than 1 minute is most likely not a loop, and processing
         // it would be costly.
-        return {}
+        return {};
     }
     DecimatingMirAudioReader decimatedAudio { audio };
     return GetMeterUsingTatumQuantizationFit(

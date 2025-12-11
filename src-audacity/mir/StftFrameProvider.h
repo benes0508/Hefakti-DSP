@@ -10,6 +10,11 @@
 **********************************************************************/
 #pragma once
 
+// Define API macro as empty for standalone build
+#ifndef MUSIC_INFORMATION_RETRIEVAL_API
+#define MUSIC_INFORMATION_RETRIEVAL_API
+#endif
+
 #include <vector>
 #include "au3-fft/PowerSpectrumGetter.h"
 

@@ -424,13 +424,13 @@ std::optional<MusicalMeter> GetMeterUsingTatumQuantizationFit(
     })();
 
     if (IsSingleEvent(peakIndices, peakValues)) {
-        return {}
+        return {};
     }
 
     const auto possibleDivs = GetPossibleDivHierarchies(audioFileDuration);
     if (possibleDivs.empty()) {
         // The file is probably too short to be a loop.
-        return {}
+        return {};
     }
 
     const auto possibleNumTatums = [&]() {

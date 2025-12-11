@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61", "wheel", "pybind11>=2.10"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hefakti-dsp"
+version = "0.1.0"
+description = "Audacity DSP algorithms with Python bindings"
+license = "LGPL-2.1-or-later"
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.20"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["*.so", "*.pyd", "*.dylib"]
